@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MDB</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css"
+      rel="stylesheet"
+    />  
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
+    ></script>   
+
+    <!-- Bootstrap-ecommerce -->
+<!--     <link href="https://bootstrap5-ecommerce/css/bootstrap.css?v=3.0" rel="stylesheet" type="text/css">
+    <link href="https://bootstrap5-ecommerce/css/ui.css?v=3.0" rel="stylesheet" type="text/css">
+    <link href="https://bootstrap5-ecommerce/css/responsive.css?v=3.0" rel="stylesheet"> -->
+
+  </head>
+    <style>
+    article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+    }  
+    body {
+      margin: 0;
+      font-family: "Inter",Arial,"Helvetica Neue","Segoe UI",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      text-align: left;
+      background-color: #fff;
+    }
+    main {
+      padding-top: 80px;
+      padding-bottom: 80px;
+      min-height: 80vh;
+    }
+
+  </style>
+    
+  
+  
+  <body>
+  <header>    
+ <!-- Navbar -->
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+       
+        <!-- Brand -->
+        <a class="navbar-brand" href="/">
+          <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="25" alt="" loading="lazy">
+        </a>
+ 
+        <!-- Right links -->
+
+          <!-- Avatar -->
+          <% if (currentUser) { %>
+          <ul class="navbar-nav ms-auto d-flex flex-row">
+            <li class="nav-item" >
+              <a class="nav-link waves-effect" href="/cart">
+<!--                 <% if (shoppingCart) { %>
+                <span class="badge red z-depth-1 mr-1" style="color: #7999cd"> <%= shoppingCart.length %> </span>
+                <% } else { %>
+                <span class="badge red z-depth-1 mr-1" style="color: #7999cd"> 0 </span>
+                <% } %>  -->
+                <i class="fas fa-shopping-cart" style="color: #7999cd"></i>
+                <span class="clearfix d-none d-sm-inline-block" style="color: #7999cd"> Cart </span>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="22" alt="" loading="lazy">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink" data-popper-placement="null" data-mdb-popper="none">
+                <li><a class="dropdown-item" href="/users/<%= currentUser.name() %>">My profile</a></li>
+                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+           <% } else { %>
+           <div class="d-flex align-items-center">
+           <a
+              class="btn btn-link px-3 me-2"
+              href="/login"
+              role="button"
+              >Login</a>
+            <a
+              class="btn btn-primary me-3"
+              href="/signup"
+              role="button"
+              >Sign up</a>
+          </div>
+          <% } %> 
+             
+        
+      </div>
+    </nav>
+    
+        
+  </header>  

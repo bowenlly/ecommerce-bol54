@@ -1,0 +1,111 @@
+<% include _header %> 
+
+  <style>
+.steps-wrap .step {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    flex-grow: 1;
+    font-size: 14px;
+    line-height: 24px;
+}
+    .steps-wrap {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 30px;
+    position: relative;
+    display: flex;
+    border-radius: 30px;
+}
+.steps-wrap .step:before {
+    background-color: #ccd1d6;
+    height: 4px;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    right: 50%;
+    top: 10px;
+}
+    .steps-wrap .step.active:after {
+    background: #00a524;
+    height: 4px;
+    position: absolute;
+    content: " ";
+    z-index: 5;
+    width: 50%;
+    right: 0%;
+    top: 10px;
+}
+.steps-wrap .icon {
+    color: #fff;
+    display: inline-block;
+    position: relative;
+    z-index: 10;
+    width: 24px;
+    height: 24px;
+    border-radius: 24px;
+    text-align: center;
+    background: #ccd1d6;
+}
+    .steps-wrap .step.active .icon {
+    background: #00a524;
+    color: #fff;
+}
+    .steps-wrap .text {
+    display: block;
+    padding-top: 5px;
+    text-align: center;
+    color: #9da1a7;
+}
+    .steps-wrap .step:first-child:before {
+    display: none;
+}
+  </style>
+                  
+  
+    <!--Main layout-->
+  <main>
+    <section class="section-content padding-y">
+    <div class="container">
+      <div class="row">
+
+                  <article class="card">
+                     <div class="card-body">
+                        <div class="mt-4 mx-auto text-center" style="max-width:600px">
+                           <svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                 <g id="round-check">
+                                    <circle id="Oval" fill="#D3FFD9" cx="48" cy="48" r="48"></circle>
+                                    <circle id="Oval-Copy" fill="#87FF96" cx="48" cy="48" r="36"></circle>
+                                    <polyline id="Line" stroke="#04B800" stroke-width="4" stroke-linecap="round" points="34.188562 49.6867496 44 59.3734993 63.1968462 40.3594229"></polyline>
+                                 </g>
+                              </g>
+                           </svg>
+                           <div class="my-3">
+                              <h4>Thank you for order</h4>
+                              <p>Some information will be written here, Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                           </div>
+                        </div>
+                        <ul class="steps-wrap mx-auto" data-mdb-stepper="stepper" style="max-width: 600px">
+                           <li class="step active"> <span class="icon">1</span> <span class="text">Order received</span> </li>
+                           <!-- step.// --> 
+                           <li class="step "> <span class="icon">2</span> <span class="text">Confirmation</span> </li>
+                           <!-- step.// --> 
+                           <li class="step "> <span class="icon">3</span> <span class="text">Delivery</span> </li>
+                           <!-- step.// --> 
+                        </ul>
+                        <!-- tracking-wrap.// --> <br> 
+                     </div>
+                  </article>
+                 
+        </div>
+
+      </div>
+    </section>
+      
+
+  </main>
+  <!--Main layout-->
+   
+<% include _footer %>

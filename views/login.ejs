@@ -1,0 +1,65 @@
+
+<% include _header %>
+
+
+
+  <style>
+      #intro {
+        background-image: url(https://mdbootstrap.com/img/new/fluid/city/008.jpg);
+        height: 100vh;
+      }
+
+      /* Height for devices larger than 576px */
+/*       @media (min-width: 992px) {
+        #intro {
+          margin-top: -58.59px;
+        }
+      } */
+
+
+    </style>
+  
+    <div id="intro" class="bg-image shadow-2-strong">
+      <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xl-5 col-md-8">
+              <% errors.forEach(function(error) { %>
+                <div class="alert alert-danger" role="alert">
+                  <%= error %>
+                </div>
+              <% }) %>
+              <% infos.forEach(function(info) { %>
+                <div class="alert alert-info" role="alert">
+                  <%= info %>
+                </div>
+              <% }) %>
+              <article class="card-body bg-white  rounded-5 shadow-5-strong p-5">
+               <h4 class="mb-4">Login</h4>
+                <form action="/login" method="post">
+
+                  <div class="form-outline mb-4">
+                    <input name="username" type="text" id="form1Example1" class="form-control" required autofocus/>
+                    <label class="form-label" for="form1Example1">Username</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input name="password" type="password" id="form1Example2" class="form-control" required/>
+                    <label class="form-label" for="form1Example2">Password</label>
+                  </div>
+
+                  <input type="submit" value="Log in" class="btn btn-primary btn-block">
+                </form>
+                 <hr> 
+                <p class="mb-0">Don't have an account? <a href="/signup">Sign up</a></p>
+                <a href="/admin" class="mt-1 text-muted"><i class="far fa-hand-point-right"></i> Administration </a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+<% include _footer %>
