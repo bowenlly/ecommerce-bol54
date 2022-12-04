@@ -1,0 +1,221 @@
+<% include _header %> 
+
+      <style>
+        /* Carousel styling */
+        #introCarousel,
+        .carousel-inner,
+        .carousel-item,
+        .carousel-item.active {
+          height: 100vh;
+        }
+
+        .carousel-item {
+          background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+        }
+        
+
+        /* Height for devices larger than 576px */
+        @media (min-width: 992px) {
+          #introCarousel {
+            margin-top: -58.59px;
+          }
+          #introCarousel,
+          .carousel-inner,
+          .carousel-item,
+          .carousel-item.active {
+            height: 50vh;
+          }
+        }
+
+        .navbar .nav-link {
+          color: #fff !important;
+        }
+        .rating-stars {
+            display: inline-block;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            white-space: nowrap;
+            clear: both;
+        }
+        .rating-stars li {
+            display: block;
+            text-overflow: clip;
+            white-space: nowrap;
+            z-index: 1;
+        }
+        .dot {
+            font-style: normal;
+            opacity: .5;
+        }
+       [class*=card-product] .img-wrap img {
+          height: 100%;
+          max-width: 100%;
+          width: auto;
+      }
+      </style>
+
+
+      <!-- Carousel wrapper -->
+      <div id="introCarousel" class="carousel slide carousel-fade shadow-2-strong" data-mdb-ride="carousel">
+
+        <!-- Inner -->
+        <div class="carousel-inner">
+          <!-- Single item -->
+          <div class="carousel-item active">
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+              <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="text-white text-center">
+                  <h1 class="mb-3">Great products are always available</h1>
+                  <h5 class="mb-4">Trendy Products, Factory Prices, Excellent Service</h5>
+                  <a
+                    class="btn btn-outline-light btn-lg m-2"
+                    href="#"
+                    role="button"
+                    rel="nofollow"
+                    target="_blank"
+                    >Shop Now</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- Carousel wrapper -->
+
+
+  
+  <!--Main layout-->
+  <main>
+    <div class="container">
+      <aside class="mb-3">
+      
+      <div class="card">
+         <div class="card-body">
+            <form action="/search" method="post">
+               <div class="row g-2">
+                  <div class="col-xl col-lg-6 flex-grow">
+                    <input name="keyword" class="form-control" type="search" placeholder="Search" aria-label="Search" spellcheck="false" data-ms-editor="true"> 
+                  </div>
+                  <!-- col.// --> 
+                  <div class="col-auto">
+                     <select name="product_kind" class="form-select">
+                        <option value="" selected>Categories</option>
+                        <option value="snack" >snack</option>
+                        <option value="vegetable" >vegetable</option>
+                        <option value="meat" >meat</option>
+                        <option value="fruit" >fruit</option>
+                        <option value="drink" >drink</option>
+                        <option value="seafood" >seafood</option>
+                        <option value="seasoner" >seasoner</option>
+                     </select>                  
+                 </div>
+                    
+                  <!-- col.// --> 
+                  <div class="col-auto">
+                     <select name="price_range" class="form-select">
+                        <option value="0" selected>Price range</option>
+                        <option value="1">less than $2</option>
+                        <option value="2">$2 - $5</option>
+                        <option value="3">$5 - $10</option>
+                        <option value="4">$10 and more</option>
+                     </select>
+                  </div>
+                  <!-- col.// --> 
+                  <div class="col-auto"> <button class="btn w-100 btn-primary"> Search </button> </div>
+                  <!-- col.// --> 
+               </div>
+               <!-- row.// --> 
+            </form>
+         </div>
+         <!-- card-body end.// --> 
+      </div>
+      </aside>
+      
+      <div class="row">
+       <div class="col-lg-9">
+          <!-- ====================== COMPONENT 1 ======================= -->
+      
+    
+          
+      <% if (products && products.length > 0) { %>
+       <p>There are <%= products.length %> products in the market.</p>
+        <% products.forEach(function(product){ %>
+        <article class="card card-product-list product-lg mb-4">
+
+           <div class="row g-0">
+              <aside class="col-xl-3 col-md-4"> <a href="#" class="img-wrap"> <img src="https://media.istockphoto.com/id/1206806317/vector/shopping-cart-icon-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=1RRQJs5NDhcB67necQn1WCpJX2YMfWZ4rYi1DFKlkNA="> </a> </aside>
+              <!-- col.// --> 
+              <div class="col-xl-9 col-md-8 border-start">
+                 <div class="card-body">
+                    <a href="#" class="h5 mb-1 title"> <%= product.name %> </a> 
+                    <p class="mb-1 text-muted"> <i class="dot"></i> Category: <%= product.product_kind %></p>
+                    <div class="rating-wrap mb-2">
+                       <ul class="rating-stars">
+                          <li class="stars-active" style="width: 80%;"> 
+                            <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/misc/stars-active.svg" alt=""> 
+                         </li>
+                       </ul>
+                       <span class="label-rating text-warning">5.0</span> <i class="fas fa-wifi-1"></i> <span class="label-rating text-muted"><%= product.inventory_amount %> left</span> <i class="fas fa-wifi-1"></i> <span class="label-rating text-success">Free Shipping</span> 
+                    </div>
+                    <!-- rating-wrap.// --> 
+                    <div class="price-wrap mb-3"> <strong class="price"> $<%= product.price %> </strong></div>
+                    <!-- price-wrap // --> 
+                    <div class="row row-cols-auto gx-2 gy-3 align-items-center">
+                       <div> 
+                         <% if (product.inventory_amount > 0) { %>
+                         <form method="post" action="/cart">
+                          <input type="text" name="product_id" value="<%= product.product_id %>" hidden>
+                          <button type="submit" class="btn btn-primary"> <i class="fa fa-shopping-cart me-1"></i> Add to cart </button>
+                        </form>
+                        <% } else { %>
+                          <span class="label-rating text-success">Out of Stock</span>
+                        <% } %>  
+<!--                          <a href="#" class="btn btn-primary"> <i class="fa fa-shopping-cart me-1"></i> Add to cart </a>  -->
+                      </div>
+                    </div>
+                 </div>
+                 <!-- info-div.// --> 
+              </div>
+              <!-- col.// --> 
+           </div>
+           <!-- row.// -->
+        </article>
+        <% }); %>
+      <% } else { %>
+      <p>There are no products in the market.</p>
+      <% } %>
+
+          <!-- card-product .// --><!-- ==================== COMPONENT 3 END .// =================== -->
+       </div>
+       <!-- col.// -->
+       <aside class="col-lg-3 col-sm-6 d-none d-lg-block">
+          <!-- COMPONENTS SIDEBAR -->
+          <div class="card">
+              
+             <article class="filter-group">
+                <header class="card-header"> <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside1" aria-expanded="true"> <i class="fas fa-fire"></i> Trending </a> </header>
+                <div class="collapse show" id="collapse_aside1" style="">
+                   <div class="card-body">
+                      
+                   </div>
+                   <!-- card-body.// --> 
+                </div>
+
+          </div>
+          <!-- card.// --><!-- ============= COMPONENTS SIDEBAR END .// ============= --> 
+       </aside>
+    </div>
+
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+
+ <% include _footer %>

@@ -1,0 +1,162 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MDB</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css"
+      rel="stylesheet"
+    />  
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
+    ></script>   
+</head>
+    <style>
+    article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+    }  
+    body {
+      margin: 0;
+      font-family: "Inter",Arial,"Helvetica Neue","Segoe UI",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      text-align: left;
+      background-color: #fff;
+    }
+    main {
+      padding-top: 80px;
+      padding-bottom: 80px;
+      min-height: 80vh;
+    }
+
+  </style>
+    
+
+<body>
+  <!--Main Navigation-->
+  <header>
+
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+          aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="/">
+          <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="25" alt="" loading="lazy" />
+        </a>
+
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto d-flex flex-row">
+
+          <!-- Avatar -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+              id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+              <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="22"
+                alt="" loading="lazy" />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main>
+    <div class="container">
+    <div class="row">
+          <!-- Sidebar -->
+    <aside id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white col-lg-3">
+      <div class="position-fixed">
+        <div class="list-group list-group-flush mx-3 mt-4">
+          <a href="/admin" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
+          </a>
+          <a href="/admin/sales" class="list-group-item list-group-item-action py-2 ripple">
+            <i class="fas fa-chart-area fa-fw me-3"></i><span>Sales</span>
+          </a>
+          <a href="/admin/products" class="list-group-item list-group-item-action py-2 ripple active"><i
+              class="fas fa-lock fa-fw me-3"></i><span>Inventory</span></a>
+        </div>
+      </div>
+    </aside>
+    <!-- Sidebar -->
+      <div class="col-lg-9">
+      <article class="card">
+         <div class="card-body">
+            <a
+               role="button"
+               href="./"
+               class="btn btn-link btn-rounded btn-sm fw-bold mb-3"
+               data-mdb-ripple-color="dark"
+              >
+               <i class="fas fa-angle-left"></i>
+              Back
+            </a>
+           <div class="row">
+            <form action="/admin/products/<%= products[0].product_id %>" method="post">
+                  <div class="col-lg-8">
+                     <div class="row gx-3">
+                        <div class="col-6 mb-3"> <label class="form-label">Product ID</label> <input name="product_id" class="form-control" type="text" value="<%= products[0].product_id %>" readonly="readonly" spellcheck="false" data-ms-editor="true"> </div>
+                        <!-- col .// --> 
+                        <div class="col-6 mb-3"> <label class="form-label">Name</label> <input name="name" class="form-control" type="text" value="<%= products[0].name %>" spellcheck="false" data-ms-editor="true" required> </div>
+                        <!-- col .// --> 
+                       
+                        <div class="col-lg-6 col-md-6 mb-3"> <label class="form-label">Price</label> <input type="number" name="price" min="0" step="0.01" value="<%= products[0].price %>" class="form-control" required> </div>
+
+                        <!-- col .// --> 
+                        <div class="col-lg-6 col-md-6 mb-3"> <label class="form-label">Inventory</label> <input type="number" name="inventory_amount" min="0" value="<%= products[0].inventory_amount %>" class="form-control" required> </div>
+                      
+
+                     </div>
+                     <!-- row.// --> 
+                  </div>
+                  <!-- col.// --> 
+                 <br> <button class="btn btn-primary" type="submit">Save changes</button> 
+            </form>
+           </div>
+            
+
+         </div>
+         <!-- card-body .// --> 
+      </article>
+      <!-- card .// --> 
+   </div>
+  
+    </div>
+    </div>
+    </div>
+  </main>
+  <!--Main layout-->
+
+
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<% include _header %> 
+  
+  <script type="text/javascript">
+    function changeAmount() {
+      var total = 0.00;    
+      var order = {}
+      const products = document.getElementsByClassName("product")
+      Array.from(products).forEach(function(product, key){
+        if (!Number.isInteger(parseInt(document.getElementById("amount-" + key).value))){
+          document.getElementById("amount-" + key).value = document.getElementById("amount-" + key).min
+        }else if(parseInt(document.getElementById("amount-" + key).value) > parseInt(document.getElementById("amount-" + key).max)) {
+          document.getElementById("amount-" + key).value = document.getElementById("amount-" + key).max
+        } else if (parseInt(document.getElementById("amount-" + key).value) < parseInt(document.getElementById("amount-" + key).min)){
+          document.getElementById("amount-" + key).value = document.getElementById("amount-" + key).min
+        }
+        var amount = document.getElementById("amount-" + key).value
+        order[document.getElementById("name-" + key).value] = amount
+        var tprice = document.getElementById("price-" + key).value * amount
+        document.getElementById("tprice-" + key).innerHTML = "$" + tprice.toFixed(2)
+        total += tprice
+      });
+      // console.log(total);
+      document.getElementById("total0").innerHTML = "$" + total.toFixed(2);
+      document.getElementById("total").innerHTML = "$" + total.toFixed(2);
+      document.getElementById("order").value = JSON.stringify(order);
+      document.getElementById("checkout").value = total.toFixed(2);
+    }
+  </script>
+                  
+  
+    <!--Main layout-->
+  <main>
+    <section class="section-content padding-y">
+    <div class="container">
+      <div class="row">
+         <div class="col-lg-9">
+            <div class="card">
+               <div class="card-body">
+                <h5 class="card-title mb-4">Shopping cart</h5>
+                 <% if (products && products.length > 0) { %>
+                   <% products.forEach(function(product, key){ %>
+                    <article class="product row gy-3 mb-4">
+                       <div class="col-lg-6">
+                          <div class="itemside me-lg-5">
+  <!--                            <div class="aside"><img src="bootstrap5-ecommerce/images/items/1.webp" class="img-sm border rounded"></div> -->
+                             <div class="info">
+                                <a href="#" class="title mb-1"> <%= product.name %> </a> 
+                                <p class="text-muted small"> Category: <%= product.product_kind %> </p>
+                             </div>
+                          </div>
+                       </div>
+                       <div class="col-auto">
+                         <input type="number" id="amount-<%= key %>" name="amount" min="1" max="<%= product.inventory_amount %>" step="1" value="1" class="form-control" onkeyup="changeAmount()" oninput="changeAmount()">
+                         <input type="text" id="price-<%= key %>" value="<%= product.price %>" hidden>
+                       </div>
+                       <div class="col-lg-2 col-sm-4 col-6">
+                          <div class="price-wrap lh-sm"> <var id="tprice-<%= key %>" class="price h6">$<%= product.price %></var> <br> <small class="text-muted"> $<%= product.price %> / per item </small> </div>
+                       </div>
+                       <div class="col-lg col-sm-4">
+                         <div class="float-lg-end">
+                          <form method="post" action="/cart/remove">
+                            <input type="text" id="name-<%= key %>" name="product_id" value="<%= product.product_id %>" hidden>
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                          </form>
+                         </div>
+                       </div>
+                    </article>
+                   <% }); %>
+                  <% } else { %>
+                    <p>There are no products in your cart.</p>
+                  <% } %>        
+               </div>
+               <!-- card-body .// -->
+               <div class="card-body border-top">
+                  <p class="mb-0"><i class="me-2 text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
+               </div>
+               <!-- card-body.// -->
+            </div>
+            <!-- card.// --> 
+         </div>
+         <!-- col.// --> 
+         <aside class="col-lg-3">
+            <div class="card mb-3">
+               <div class="card-body">
+                  <form>
+                     <label class="form-label">Have coupon?</label> 
+                     <div class="input-group"> <input type="text" class="form-control" placeholder="Coupon code" spellcheck="false" data-ms-editor="true"> <button class="btn btn-light">Apply</button> </div>
+                  </form>
+               </div>
+               <!-- card-body.// --> 
+            </div>
+            <!-- card.// --> 
+            <div class="card">
+               <div class="card-body">
+                  <dl class="dlist-align">
+                     <dt>Total price:</dt>
+                     <dd id="total0" class="text-end"> $0.00</dd>
+                  </dl>
+                  <dl class="dlist-align">
+                     <dt>Discount:</dt>
+                     <dd class="text-end text-success"> - $0.00 </dd>
+                  </dl>
+                  <dl class="dlist-align">
+                     <dt>TAX:</dt>
+                     <dd class="text-end text-danger"> + $0.00 </dd>
+                  </dl>
+                  <hr>
+                  <dl class="dlist-align">
+                     <dt>Total:</dt>
+                     <dd id="total" class="text-end text-dark h5"> $0.00 </dd>
+                  </dl>
+                  <div class="d-grid gap-2 my-3"> 
+                    <% if (products && products.length > 0) { %>
+                    <form method="post" action="/cart/checkout">
+                      <input type="text" name="customer_id" id="user" value="<%= currentUser.username %>" hidden>
+                      <input type="text" name="order" id="order" value="{}" hidden>
+                      <input type="number" step="0.01" name="total" id="checkout" value="0" hidden>
+                      <button type="submit" class="btn btn-primary w-100">Checkout</button>
+                    </form>
+                    <% } else { %>
+                      <button type="button" class="btn btn-dark w-100">Checkout</button>
+                    <% } %>   
+                    <a href="/" role="button" class="btn btn-light w-100"> Back to shop </a> 
+                 </div>
+               </div>
+               <!-- card-body.// --> 
+            </div>
+           <script>changeAmount()</script>
+            <!-- card.// --> 
+         </aside>
+         <!-- col.// -->
+      </div>
+     </div>     
+    </section>
+      
+<!--       <section class="section-name border-top padding-y">
+        <div class="container">
+          <div class="row">
+            <h6>Payment and refund policy</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+        </div>
+      </section> -->
+    
+  </main>
+  <!--Main layout-->
+   
+<% include _footer %>

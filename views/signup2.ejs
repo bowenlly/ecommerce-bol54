@@ -1,0 +1,177 @@
+<% include _header %>
+  
+  <style>
+      #intro {
+        background-image: url(https://mdbootstrap.com/img/new/fluid/city/008.jpg);
+        height: 100vh;
+      }
+
+      /* Height for devices larger than 576px */
+/*       @media (min-width: 992px) {
+        #intro {
+          margin-top: -58.59px;
+        }
+      } */
+
+    </style>
+  
+    <div id="intro" class="bg-image shadow-2-strong">
+      <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xl-5 col-md-8">
+              <% errors.forEach(function(error) { %>
+                <div class="alert alert-danger" role="alert">
+                  <%= error %>
+                </div>
+              <% }) %>
+              <% infos.forEach(function(info) { %>
+                <div class="alert alert-info" role="alert">
+                  <%= info %>
+                </div>
+              <% }) %>
+                <article class="card-body bg-white  rounded-5 shadow-5-strong p-5">
+                 <h4 class="mb-4">Create accaunt</h4>
+                  <div class="row gx-3">
+                    <a href="/signup"class="col btn btn btn-secondary mb-4" type="button">
+                      Home
+                    </a> 
+                    <a href="/signup/business" class="col btn btn-primary mb-4" type="button">
+                      Business
+                    </a> 
+                  </div>
+                 <form action="/signup" method="post">
+                    <div class="row gx-3">
+                       <div class="col mb-4 form-group required-field"> <label class="form-label">Customer ID</label> <input name="username" required="" type="text" class="form-control" placeholder="" spellcheck="false" data-ms-editor="true"> </div>
+                       <!-- col end.// --> 
+                       <div class="col mb-4 form-group required-field"> <label class="form-label">Name</label> <input name="name" required="" type="text" class="form-control" placeholder="" spellcheck="false" data-ms-editor="true"> </div>
+                      
+                    </div>
+    
+                     <input type="text" name="kind" value="business" hidden>
+                    <!-- row end.// --> 
+                    <div class="row gx-3">
+
+                        <div class="col-lg-12 mb-3 form-group required-field"> <label class="form-label">Street</label> <input name="street" required="" class="form-control" type="text" placeholder="" spellcheck="false" data-ms-editor="true"> </div>
+
+                          
+                         <div class="col-12 col-md-6 form-group required-field">
+                            <label class="form-label" for="city">City</label><input name="city" required="" maxlength="50" aria-describedby="cityError" id="city" class="form-control" value="" spellcheck="false" data-ms-editor="true">
+                         </div>
+                      
+                         <div class="col-6 col-md-3 form-group required-field">
+                            <label class="form-label" for="state">State</label>
+                            <select name="state" required="" aria-describedby="stError" class="form-select" id="state">
+                               <option value="" selected> </option>
+                               <option value="AL">AL - Alabama</option>
+                               <option value="AK">AK - Alaska</option>
+                               <option value="AS">AS - American Samoa</option>
+                               <option value="AZ">AZ - Arizona</option>
+                               <option value="AR">AR - Arkansas</option>
+                               <option value="CA">CA - California</option>
+                               <option value="CO">CO - Colorado</option>
+                               <option value="CT">CT - Connecticut</option>
+                               <option value="DE">DE - Delaware</option>
+                               <option value="DC">DC - District of Columbia</option>
+                               <option value="FM">FM - Federated States of Micronesia</option>
+                               <option value="FL">FL - Florida</option>
+                               <option value="GA">GA - Georgia</option>
+                               <option value="GU">GU - Guam</option>
+                               <option value="HI">HI - Hawaii</option>
+                               <option value="ID">ID - Idaho</option>
+                               <option value="IL">IL - Illinois</option>
+                               <option value="IN">IN - Indiana</option>
+                               <option value="IA">IA - Iowa</option>
+                               <option value="KS">KS - Kansas</option>
+                               <option value="KY">KY - Kentucky</option>
+                               <option value="LA">LA - Louisiana</option>
+                               <option value="ME">ME - Maine</option>
+                               <option value="MH">MH - Marshall Islands</option>
+                               <option value="MD">MD - Maryland</option>
+                               <option value="MA">MA - Massachusetts</option>
+                               <option value="MI">MI - Michigan</option>
+                               <option value="MN">MN - Minnesota</option>
+                               <option value="MS">MS - Mississippi</option>
+                               <option value="MO">MO - Missouri</option>
+                               <option value="MT">MT - Montana</option>
+                               <option value="NE">NE - Nebraska</option>
+                               <option value="NV">NV - Nevada</option>
+                               <option value="NH">NH - New Hampshire</option>
+                               <option value="NJ">NJ - New Jersey</option>
+                               <option value="NM">NM - New Mexico</option>
+                               <option value="NY">NY - New York</option>
+                               <option value="NC">NC - North Carolina</option>
+                               <option value="ND">ND - North Dakota</option>
+                               <option value="MP">MP - Northern Mariana Islands</option>
+                               <option value="OH">OH - Ohio</option>
+                               <option value="OK">OK - Oklahoma</option>
+                               <option value="OR">OR - Oregon</option>
+                               <option value="PW">PW - Palau</option>
+                               <option value="PA">PA - Pennsylvania</option>
+                               <option value="PR">PR - Puerto Rico</option>
+                               <option value="RI">RI - Rhode Island</option>
+                               <option value="SC">SC - South Carolina</option>
+                               <option value="SD">SD - South Dakota</option>
+                               <option value="TN">TN - Tennessee</option>
+                               <option value="TX">TX - Texas</option>
+                               <option value="UT">UT - Utah</option>
+                               <option value="VT">VT - Vermont</option>
+                               <option value="VI">VI - Virgin Islands</option>
+                               <option value="VA">VA - Virginia</option>
+                               <option value="WA">WA - Washington</option>
+                               <option value="WV">WV - West Virginia</option>
+                               <option value="WI">WI - Wisconsin</option>
+                               <option value="WY">WY - Wyoming</option>
+                               <option value="AE">AE - Armed Forces Europe, the Middle East, and Canada</option>
+                               <option value="AP">AP - Armed Forces Pacific</option>
+                               <option value="AA">AA - Armed Forces Americas (except Canada)</option>
+                            </select>
+                         </div>
+                      
+                         <div class="col-6 col-md-3 form-group required-field">
+                            <label class="form-label" for="zipcode">ZIP Code</label><input name="zipcode" pattern="^[0-9]{5}(?:-[0-9]{4})?$" maxlength="10" required="" aria-describedby="zipError" id="zipcode" class="form-control" value="" spellcheck="false" data-ms-editor="true">
+                         </div>
+                      
+
+                       <div class="col-6 mb-3"> <label class="form-label">Business Category</label> <input name="business_category" class="form-control" type="text" placeholder=""> </div>
+                      
+                       <div class="col-6 mb-3"> <label class="form-label">Annual Income</label> <input name="annual_income" class="form-control" type="text" placeholder=""> </div>
+                                
+                       <!-- col end.// --> 
+                       <div class="col mb-3"> <label class="form-label">Create password</label> <input name="password" required="" class="form-control" type="password"> </div>
+                       <!-- col end.// --> 
+<!--                        <div class="col mb-3"> <label class="form-label">Repeat password</label> <input class="form-control" type="password"> </div> -->
+                       <!-- col end.// --> 
+                    </div>
+                    <!-- row end.// --> 
+                    <div class="row mt-3 mb-4 align-items-center">
+                       <div class="col-auto"> <button class="btn btn-primary" type="submit">Register now</button> </div>
+                       <div class="col"> <label class="form-check me-auto"> <input class="form-check-input" type="checkbox" value="" required=""> <span class="form-check-label"> I agree with Terms and Conditions </span> </label> </div>
+                    </div>
+                 </form>
+                 <!-- form end.// --> 
+                 <hr>
+                 <p class="mb-0">Already have an account? <a href="/login">Sign in</a></p>
+              </article>
+<!--               <form class="bg-white  rounded-5 shadow-5-strong p-5" action="/signup" method="post">
+                
+                <div class="form-outline mb-4">
+                  <input name="username" type="text" id="form1Example1" class="form-control" required autofocus/>
+                  <label class="form-label" for="form1Example1">Username</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input name="password" type="password" id="form1Example2" class="form-control" required/>
+                  <label class="form-label" for="form1Example2">Password</label>
+                </div>
+
+                <input type="submit" value="Sign up" class="btn btn-primary btn-block">
+              </form> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+ <% include _footer %>

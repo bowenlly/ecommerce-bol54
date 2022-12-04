@@ -1,0 +1,207 @@
+<% include _header %>
+  
+  <style>
+    main {
+      padding-top: 100px;
+      padding-bottom: 100px;
+      min-height: 100vh;
+    }
+
+  </style>
+
+<main>
+
+<section class="section-pagetop bg-gray">
+  <div class="container">
+    <h2 class="title-page">My account</h2>
+</div> 
+</section>
+
+<% if ((currentUser) && (currentUser.id === user.id)) { %>
+<section class="section-content padding-y">
+<div class="container">
+
+<div class="row">
+   <aside class="col-lg-3">
+      <!-- COMPONENT MENU LIST --> 
+      <div class="nav flex-column nav-pills">
+        <nav class="list-group">
+          <a class="list-group-item active" href="/users/<%= currentUser.name() %>"> Profile </a>
+          <a class="list-group-item" href="/logout"> Log out </a>
+        </nav>
+      </div>
+   </aside>
+   <div class="col-lg-9">
+      <article class="card">
+         <div class="card-body">
+            <form>
+               <div class="row">
+                  <div class="col-lg-8">
+                     <div class="row gx-3">
+                       <% var cust= cus[0] %>
+                        <div class="col-6 mb-3"> <label class="form-label">Customer ID</label> <input class="form-control" type="text" placeholder="<%= cust.customer_id %>" readonly="readonly" spellcheck="false" data-ms-editor="true"> </div>
+                        <!-- col .// --> 
+                        <div class="col-6 mb-3"> <label class="form-label">Name</label> <input class="form-control" type="text" placeholder="<%= cust.name %>" spellcheck="false" data-ms-editor="true"> </div>
+                        <!-- col .// --> 
+                       
+                        <% if (cust.kind === "home") { %>
+
+                        <div class="col-lg-6 col-md-6 mb-3"> <label class="form-label">Gender</label>
+                          <select name="gender" id="gender" class="form-select">
+                            <option value="Male" <%=cust.gender==='male' ? 'selected' : '' %>>Male</option>
+                            <option value="Feale" <%=cust.gender==='female' ? 'selected' : '' %>>Female</option>
+                          </select>
+                        </div>
+                        <!-- col .// --> 
+                        <div class="col-lg-6 col-md-6 mb-3"> <label class="form-label">Age</label> <input type="number" name="age" id="age" min="1" max="99" value="<%= cust.age %>" class="form-control"> </div>
+                 
+                        <div class="col-lg-6 col-md-6 mb-3"> 
+                          <label class="form-label">Marriage</label> 
+                          <select name="marriage" class="form-select">
+                            <option value="never_married" selected>Never Married</option>
+                            <option value="married">Married</option>
+                            <option value="separated">Separated</option>
+                            <option value="divorced">Divorced</option>
+                            <option value="windowed">Windowed</option>
+                          </select>
+                       </div>
+                 
+                        <div class="col-lg-6 col-md-6 mb-3"> <label class="form-label">Income</label> <input class="form-control" type="text" placeholder="<%= cust.income %>"> </div>
+                 
+                        <% } else if (cust.kind === "business") { %>
+                         <div class="col-6 mb-3"> <label class="form-label">Business Category</label> <input name="business_category" class="form-control" type="text" placeholder="<%= cust.business_category %>"> </div>
+                      
+                         <div class="col-6 mb-3"> <label class="form-label">Annual Income</label> <input name="annual_income" class="form-control" type="text" placeholder="<%= cust.annual_income %>"> </div>
+                                
+                        <% } %>  
+                    
+
+                        <div class="col-lg-12 mb-3"> <label class="form-label">Street</label> <input name="street" class="form-control" type="text" placeholder="<%= cust.street %>" spellcheck="false" data-ms-editor="true"> </div>
+  
+                         <div class="col-12 col-md-6 form-group required-field">
+                            <label class="form-label" for="city">City</label><input name="city" required="" maxlength="50" aria-describedby="cityError" id="city" class="form-control" value="<%= cust.city %>" spellcheck="false" data-ms-editor="true">
+                         </div>
+                          
+                         <div class="col-6 col-md-3 form-group required-field">
+                            <label class="form-label" for="state">State</label>
+                            <select name="state" required="" aria-describedby="stError" class="form-select" id="state">
+                               <option value=""> </option>
+                               <option value="AL">AL - Alabama</option>
+                               <option value="AK">AK - Alaska</option>
+                               <option value="AS">AS - American Samoa</option>
+                               <option value="AZ">AZ - Arizona</option>
+                               <option value="AR">AR - Arkansas</option>
+                               <option value="CA">CA - California</option>
+                               <option value="CO">CO - Colorado</option>
+                               <option value="CT">CT - Connecticut</option>
+                               <option value="DE">DE - Delaware</option>
+                               <option value="DC">DC - District of Columbia</option>
+                               <option value="FM">FM - Federated States of Micronesia</option>
+                               <option value="FL">FL - Florida</option>
+                               <option value="GA">GA - Georgia</option>
+                               <option value="GU">GU - Guam</option>
+                               <option value="HI">HI - Hawaii</option>
+                               <option value="ID">ID - Idaho</option>
+                               <option value="IL">IL - Illinois</option>
+                               <option value="IN">IN - Indiana</option>
+                               <option value="IA">IA - Iowa</option>
+                               <option value="KS">KS - Kansas</option>
+                               <option value="KY">KY - Kentucky</option>
+                               <option value="LA">LA - Louisiana</option>
+                               <option value="ME">ME - Maine</option>
+                               <option value="MH">MH - Marshall Islands</option>
+                               <option value="MD">MD - Maryland</option>
+                               <option value="MA">MA - Massachusetts</option>
+                               <option value="MI">MI - Michigan</option>
+                               <option value="MN">MN - Minnesota</option>
+                               <option value="MS">MS - Mississippi</option>
+                               <option value="MO">MO - Missouri</option>
+                               <option value="MT">MT - Montana</option>
+                               <option value="NE">NE - Nebraska</option>
+                               <option value="NV">NV - Nevada</option>
+                               <option value="NH">NH - New Hampshire</option>
+                               <option value="NJ">NJ - New Jersey</option>
+                               <option value="NM">NM - New Mexico</option>
+                               <option value="NY">NY - New York</option>
+                               <option value="NC">NC - North Carolina</option>
+                               <option value="ND">ND - North Dakota</option>
+                               <option value="MP">MP - Northern Mariana Islands</option>
+                               <option value="OH">OH - Ohio</option>
+                               <option value="OK">OK - Oklahoma</option>
+                               <option value="OR">OR - Oregon</option>
+                               <option value="PW">PW - Palau</option>
+                               <option value="PA">PA - Pennsylvania</option>
+                               <option value="PR">PR - Puerto Rico</option>
+                               <option value="RI">RI - Rhode Island</option>
+                               <option value="SC">SC - South Carolina</option>
+                               <option value="SD">SD - South Dakota</option>
+                               <option value="TN">TN - Tennessee</option>
+                               <option value="TX">TX - Texas</option>
+                               <option value="UT">UT - Utah</option>
+                               <option value="VT">VT - Vermont</option>
+                               <option value="VI">VI - Virgin Islands</option>
+                               <option value="VA">VA - Virginia</option>
+                               <option value="WA">WA - Washington</option>
+                               <option value="WV">WV - West Virginia</option>
+                               <option value="WI">WI - Wisconsin</option>
+                               <option value="WY">WY - Wyoming</option>
+                               <option value="AE">AE - Armed Forces Europe, the Middle East, and Canada</option>
+                               <option value="AP">AP - Armed Forces Pacific</option>
+                               <option value="AA">AA - Armed Forces Americas (except Canada)</option>
+                            </select>
+                         </div>
+                          
+                         <div class="col-6 col-md-3 form-group required-field">
+                            <label class="form-label" for="zipCode">ZIP Code</label><input name="zipcode" pattern="^[0-9]{5}(?:-[0-9]{4})?$" maxlength="10" required="" aria-describedby="zipError" id="zipcode" class="form-control" value="<%= cust.zipcode %>" spellcheck="false" data-ms-editor="true">
+                         </div>
+                      
+
+                     </div>
+                     <!-- row.// --> 
+                  </div>
+                  <!-- col.// --> 
+                  <aside class="col-lg-4">
+                     <div class="text-lg-center mt-3">
+                        <img class="img-lg mb-3 img-avatar" src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" alt="User Photo"> 
+                        <div> <a class="btn btn-sm btn-light" href="#"> <i class="fa fa-camera"></i> Upload </a> <a class="btn btn-sm btn-outline-danger" href="#"> <i class="fa fa-trash"></i> </a> </div>
+                     </div>
+                  </aside>
+                  <!-- col.// --> 
+               </div>
+               <!-- row.// --> <br> <button class="btn btn-primary" type="submit">Save changes</button> 
+            </form>
+            <hr class="my-4">
+            <div class="row" style="max-width:920px">
+               <div class="col-md">
+                  <article class="box mb-3">
+                     <a class="btn float-end btn-light btn-sm" href="#">Change</a> 
+                     <p class="title mb-0">Password</p>
+                     <small class="text-muted d-block" style="width:70%">You can reset or change your password by clicking here</small> 
+                  </article>
+               </div>
+               <!-- col.// --> 
+               <div class="col-md">
+                  <article class="box mb-3">
+                     <a class="btn float-end btn-outline-danger btn-sm" href="#">Deactivate</a> 
+                     <p class="title mb-0">Remove account</p>
+                     <small class="text-muted d-block" style="width:70%">Once you delete your account, there is no going back.</small> 
+                  </article>
+               </div>
+               <!-- col.// --> 
+            </div>
+            <!-- row.// --> 
+         </div>
+         <!-- card-body .// --> 
+      </article>
+      <!-- card .// --> 
+   </div>
+</div>
+
+</div> <!-- container .//  -->
+</section>
+<% } %>
+
+
+</main>
+  
+<% include _footer %>
