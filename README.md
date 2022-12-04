@@ -1,13 +1,11 @@
-Session example
 
 
 Uses Express.js and Passport to create user sessions.
 
-This is a Glitch adaptation of the persistent data and sessions from the Express In Action book.
+This is a e-commerce website demo for course projects.
 
 
-
-Made by [Glitch](https://glitch.com/)
+Made by [Bowenlly](https://glitch.com/@bowenlly)
 -------------------
 
 \ ゜o゜)ノ
